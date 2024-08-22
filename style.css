@@ -249,12 +249,12 @@ section{
   }
   
 .about-container .btn-group .btn:nth-child(1) {
-    animation: slideRight 1s ease forwards;
+    animation: slideTop 1s ease forwards;
     animation-delay: 3.5s;
   }
   
 .about-container .btn-group .btn:nth-child(2) {
-    animation: slideLeft 1s ease forwards;
+    animation: slideBottom 1s ease forwards;
     animation-delay: 3.5s;
   }
   
@@ -1277,7 +1277,12 @@ footer ul li a{
     .input-box input::placeholder{
         font-size: 1rem;
     }
-}
+    .info-box span{
+        font-size:1.64rem;
+    }
+    .info-box h3{
+        font-size:1.21rem;
+    }
 
 /* Rest of the CSS remains the same */
 
