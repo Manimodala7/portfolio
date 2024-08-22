@@ -113,3 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
         container2.style.display = 'block'; // Show container2
     }, totalDelay * 1000);
 });
+
+
+const hoverElements = document.querySelectorAll('.logo, li a, .visit-btn, .about img, .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
+
+hoverElements.forEach(element => {
+  element.addEventListener('click', function() {
+    this.classList.toggle('active');
+  });
+});
+
