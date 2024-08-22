@@ -206,7 +206,7 @@ section{
     gap: 1.25rem;
     text-decoration: none;
 }
-.btn-group {
+.about-container .btn-group {
     display: flex;
     gap: 1.25rem;
     text-decoration: none;
@@ -215,7 +215,7 @@ section{
     animation-delay: 3s;
   }
   
-  .btn {
+.btn-group .btn {
     border-radius: 3rem;
     padding: 0.5rem 1.5rem;
     background: rgb(0, 157, 255);
@@ -229,22 +229,40 @@ section{
     opacity: 0;
     box-shadow: 0 0 5px rgb(0, 157, 255), 0 0 25px #0ef;
   }
+
+  .btn{
+    border-radius: 3rem;
+    padding: 0.5rem 1.5rem;
+    background: rgb(0, 157, 255);
+    cursor: pointer;
+    color: whitesmoke;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    text-wrap: nowrap;
+    transition: 0.2s ease-in-out;
+  }
+  .btn:hover {
+    background: whitesmoke;
+    color: black;
+    box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+  }
   
-  .btn:nth-child(1) {
+.about-container .btn-group .btn:nth-child(1) {
     animation: slideRight 1s ease forwards;
     animation-delay: 3.5s;
   }
   
-  .btn:nth-child(2) {
+.about-container .btn-group .btn:nth-child(2) {
     animation: slideLeft 1s ease forwards;
     animation-delay: 3.5s;
   }
   
-  .btn a {
+.btn-group .btn a {
     text-decoration: none;
   }
   
-  .btn:hover {
+.btn-group .btn:hover {
     background: whitesmoke;
     color: black;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
@@ -398,6 +416,7 @@ section{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(363px, 1fr));
     gap: 2rem;
+    justify-content: center;
 }
 .project-card{
     padding: 2rem 2rem;
@@ -483,7 +502,7 @@ section{
 .publication-card:hover{
     background-color: black;
     color: whitesmoke;
-    transform: scale(1.02);
+    transform: scale(1.04);
 }
 .publication-card:hover .btn{
     border: 2px solid whitesmoke;
@@ -593,10 +612,35 @@ section{
         max-width: 400px;
         padding: 30px 40px;
     }
-    .Technical-bars .bar i span{
+    .Technical-bars .bar i span {
         font-size: 15px;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .container1, .container2 {
+        max-width: 400px;
+        padding: 30px 40px;
+    }
+    footer li a {
+        display: none;
+    }
+    .radial-bars {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .radial-bars .radial-bar {
+        width: calc(50% - 10px);
+        max-width: 150px;
+    }
+    .radial-bars .radial-bar svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
 /* New media query for larger screens */
 @media only screen and (min-width: 1400px) {
     .skills-container {
@@ -1117,8 +1161,125 @@ footer ul li a{
     }
 }
 
+@media(max-width: 720px){
+    .section-title{
+        text-align: center;
+        font-size: 1.96rem;
+        font-weight: 600;
+        margin-bottom: 1.69rem;
+    }
+    header{
+        padding: 1rem 1rem;
+        gap: 8rem;
+    }
+    header .logo{
+        font-size: 1.44rem;
+    }
 
+    header #menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+    .nav-links{
+        position: absolute;
+        top: 100%;
+        margin-top: 1rem;
+        width: 100%;
+        padding: 1rem;
+        color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.88);
+        border-radius: 2.4rem;
+        display: none;
+    }
+    .nav-links li{
+        margin-top: 0.75rem;
+        padding: 0.64rem;
+    }
+    .nav-links.active{
+        display: block;
+    }
 
+    .about-container img{
+        width: 50vw;
+    }
+    .about-container h1{
+        font-size: 2.7rem;
+    }
+    .input-box input{
+        padding: 0.5rem 2.7rem;
+        width: 80%;
+        font-size: 1.28rem;
+    }
+    .input-box input::placeholder{
+        font-size: 1.28rem;
+    }
+    .about-image::before {
+        width: calc(55vw + 20px);
+        height: calc(55vw + 20px);
+    }
+    .about img {
+        width: 55vw;
+    }
+
+    .education-card {
+        padding: 1rem;
+    }
+    .card-content span {
+        font-size: 1.2rem;
+    }
+    .card-content h5 {
+        font-size: 1rem;
+    }
+    .card-content p {
+        font-size: 0.9rem;
+    }
+
+    .publication-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.44rem;
+    }
+    .publication-card {
+        padding: 0.64rem 0.64rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 0.68rem;
+        transition: 0.3s ease-in-out;
+    }
+    .publication-card span {
+       font-size: 1.2rem;
+    }
+    .publication-card h3{
+        font-size: 1rem;
+    }
+    .publication-card p{
+        font-size: 0.8rem;
+    }
+    .publication-card .btn {
+        font-size:small;
+        padding: 0.45rem 0.9rem;
+    }
+    
+    footer ul{
+        gap: 0.64rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .project-grid {
+        grid-template-columns: 1fr; /* Set to a single column on smaller screens */
+    }
+    .input-box input::placeholder{
+        font-size: 1rem;
+    }
+}
+
+/* Rest of the CSS remains the same */
 
 
 @keyframes slideRight {
