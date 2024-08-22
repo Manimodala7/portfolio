@@ -35,7 +35,7 @@ header{
     opacity: 0;
     animation: slideTop 0.5s ease forwards;
 }
-.logo:hover{
+.logo:active{
     transform: scale(1.1);
 }
 .nav-links{
@@ -64,7 +64,7 @@ li a::before{
     transition: 0.3s ease-in-out;
     background: cyan;
 }
-li a:hover::before{
+li a:active::before{
     width: 100%;
 }
 
@@ -83,7 +83,7 @@ li a:hover::before{
     animation: slideTop 1s ease forwards ;
     animation-delay: 1.38s;
 } 
-.visit-btn:hover{
+.visit-btn:active{
     transform: scale(1.03);
     background: whitesmoke;
     color: black;
@@ -144,7 +144,7 @@ section{
     position: relative;
     z-index: 1;
 }
-.about img:hover {
+.about img:active {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
                 0 0 40px rgba(247, 32, 158, 0.5),
@@ -242,19 +242,19 @@ section{
     text-wrap: nowrap;
     transition: 0.2s ease-in-out;
   }
-  .btn:hover {
+  .btn:active {
     background: whitesmoke;
     color: black;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
   }
   
 .about-container .btn-group .btn:nth-child(1) {
-    animation: slideRight 1s ease forwards;
+    animation: slideRTop 1s ease forwards;
     animation-delay: 3.5s;
   }
   
 .about-container .btn-group .btn:nth-child(2) {
-    animation: slideLeft 1s ease forwards;
+    animation: slideBottom 1s ease forwards;
     animation-delay: 3.5s;
   }
   
@@ -262,7 +262,7 @@ section{
     text-decoration: none;
   }
   
-.btn-group .btn:hover {
+.btn-group .btn:active {
     background: whitesmoke;
     color: black;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
@@ -280,7 +280,7 @@ section{
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.socials i:hover{
+.socials i:active{
     transform: rotate(360deg);
 }
 
@@ -334,7 +334,7 @@ section{
     animation-delay: 0.2s;
   }
   
-  .grid-card:hover {
+  .grid-card:active {
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -386,7 +386,7 @@ section{
   }
   
   
-.grid-card:hover{
+.grid-card:active{
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -434,7 +434,7 @@ section{
     animation: slideTop .64s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.project-card:hover{
+.project-card:active{
     background-color: black;
     color: whitesmoke;
     transform: scale(1.02);
@@ -449,11 +449,11 @@ section{
     animation: slideTop .75s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.project-card:hover .btn{
+.project-card:active .btn{
     border: 2px solid whitesmoke;
     color: whitesmoke;
 }
-.project-card:hover .btn:hover{
+.project-card:active .btn:active{
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: black;
@@ -499,16 +499,16 @@ section{
     animation: slideLeft 0.75s ease forwards; /* Reduced animation duration */
     animation-delay: calc(0.12s * var(--i)); /* Staggered delay */
 }
-.publication-card:hover{
+.publication-card:active{
     background-color: black;
     color: whitesmoke;
     transform: scale(1.04);
 }
-.publication-card:hover .btn{
+.publication-card:active .btn{
     border: 2px solid whitesmoke;
     color: whitesmoke;
 }
-.publication-card:hover .btn:hover{
+.publication-card:active .btn:active{
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: black;
@@ -546,7 +546,7 @@ section{
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.education-card:hover {
+.education-card:active {
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -666,7 +666,7 @@ section{
     cursor: pointer;
     animation: slideBottom 1s ease forwards ;
 }
-.heading1:hover::after {
+.heading1:active::after {
     content: "";
     position: absolute;
     width: 0;
@@ -1279,8 +1279,6 @@ footer ul li a{
     }
 }
 
-/* Rest of the CSS remains the same */
-
 
 @keyframes slideRight {
     0% {
@@ -1327,4 +1325,7 @@ footer ul li a{
     from{
         width: 0;
     }
+}
+
+@media (active: active){
 }
