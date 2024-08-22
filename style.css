@@ -35,7 +35,7 @@ header{
     opacity: 0;
     animation: slideTop 0.5s ease forwards;
 }
-.logo.active{
+.logo:hover{
     transform: scale(1.1);
 }
 .nav-links{
@@ -64,7 +64,7 @@ li a::before{
     transition: 0.3s ease-in-out;
     background: cyan;
 }
-li a.active::before{
+li a:hover::before{
     width: 100%;
 }
 
@@ -83,7 +83,7 @@ li a.active::before{
     animation: slideTop 1s ease forwards ;
     animation-delay: 1.38s;
 } 
-.visit-btn.active{
+.visit-btn:hover{
     transform: scale(1.03);
     background: whitesmoke;
     color: black;
@@ -144,7 +144,7 @@ section{
     position: relative;
     z-index: 1;
 }
-.about img.active {
+.about img:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
                 0 0 40px rgba(247, 32, 158, 0.5),
@@ -242,14 +242,14 @@ section{
     text-wrap: nowrap;
     transition: 0.2s ease-in-out;
   }
-  .btn.active {
+  .btn:hover {
     background: whitesmoke;
     color: black;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
   }
   
 .about-container .btn-group .btn:nth-child(1) {
-    animation: slideRTop 1s ease forwards;
+    animation: slideTop 1s ease forwards;
     animation-delay: 3.5s;
   }
   
@@ -262,7 +262,7 @@ section{
     text-decoration: none;
   }
   
-.btn-group .btn.active {
+.btn-group .btn:hover {
     background: whitesmoke;
     color: black;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
@@ -280,7 +280,7 @@ section{
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.socials i.active{
+.socials i:hover{
     transform: rotate(360deg);
 }
 
@@ -334,7 +334,7 @@ section{
     animation-delay: 0.2s;
   }
   
-  .grid-card.active {
+  .grid-card:hover {
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -386,7 +386,7 @@ section{
   }
   
   
-.grid-card.active{
+.grid-card:hover{
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -434,7 +434,7 @@ section{
     animation: slideTop .64s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.project-card.active{
+.project-card:hover{
     background-color: black;
     color: whitesmoke;
     transform: scale(1.02);
@@ -449,11 +449,11 @@ section{
     animation: slideTop .75s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.project-card.active .btn{
+.project-card:hover .btn{
     border: 2px solid whitesmoke;
     color: whitesmoke;
 }
-.project-card.active .btn.active{
+.project-card:hover .btn:hover{
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: black;
@@ -499,16 +499,16 @@ section{
     animation: slideLeft 0.75s ease forwards; /* Reduced animation duration */
     animation-delay: calc(0.12s * var(--i)); /* Staggered delay */
 }
-.publication-card.active{
+.publication-card:hover{
     background-color: black;
     color: whitesmoke;
     transform: scale(1.04);
 }
-.publication-card.active .btn{
+.publication-card:hover .btn{
     border: 2px solid whitesmoke;
     color: whitesmoke;
 }
-.publication-card.active .btn.active{
+.publication-card:hover .btn:hover{
     border: 2px solid whitesmoke;
     background-color: whitesmoke;
     color: black;
@@ -546,7 +546,7 @@ section{
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.education-card.active {
+.education-card:hover {
     transform: scale(1.02);
     background-color: rgb(15, 15, 15);
     color: aliceblue;
@@ -666,7 +666,7 @@ section{
     cursor: pointer;
     animation: slideBottom 1s ease forwards ;
 }
-.heading1.active::after {
+.heading1:hover::after {
     content: "";
     position: absolute;
     width: 0;
@@ -1088,7 +1088,7 @@ footer ul li a{
         margin-top: 0.75rem;
         padding: 0.64rem;
     }
-    .nav-links.active{
+    .nav-links:hover{
         display: block;
     }
 
@@ -1198,7 +1198,7 @@ footer ul li a{
         margin-top: 0.75rem;
         padding: 0.64rem;
     }
-    .nav-links.active{
+    .nav-links:hover{
         display: block;
     }
 
