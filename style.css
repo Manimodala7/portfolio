@@ -32,7 +32,6 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
-
 header{
     position: fixed;
     top: 1rem;
@@ -1358,3 +1357,14 @@ footer ul li a{
         width: 0;
     }
 }
+
+@media (hover: none) {
+    .hover-element:hover::before {
+        width: 0 !important;
+    }
+
+    .hover-element.touch-active::before {
+        width: 100% !important;
+    }
+}    
+    
