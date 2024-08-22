@@ -6,32 +6,8 @@
     text-decoration: none;
     scroll-behavior: smooth;
     list-style: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
-.allow-select {
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-/* For iOS devices, you might also want to add this to prevent content highlighting */
-body {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 header{
     position: fixed;
     top: 1rem;
@@ -59,7 +35,9 @@ header{
     opacity: 0;
     animation: slideTop 0.5s ease forwards;
 }
-
+.logo:hover{
+    transform: scale(1.1);
+}
 .nav-links{
     display: flex;
     gap: 2rem;
@@ -271,12 +249,12 @@ section{
   }
   
 .about-container .btn-group .btn:nth-child(1) {
-    animation: slideTop 1s ease forwards;
+    animation: slideRight 1s ease forwards;
     animation-delay: 3.5s;
   }
   
 .about-container .btn-group .btn:nth-child(2) {
-    animation: slideBottom 1s ease forwards;
+    animation: slideLeft 1s ease forwards;
     animation-delay: 3.5s;
   }
   
@@ -1299,12 +1277,7 @@ footer ul li a{
     .input-box input::placeholder{
         font-size: 1rem;
     }
-    .info-box span{
-        font-size:1.64rem;
-    }
-    .info-box h3{
-        font-size:1.21rem;
-    }
+}
 
 /* Rest of the CSS remains the same */
 
@@ -1355,16 +1328,3 @@ footer ul li a{
         width: 0;
     }
 }
-
-.logo:hover{
-    transform: scale(1.1);
-    }
-
-    .about img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
-                0 0 40px rgba(247, 32, 158, 0.5),
-                0 0 60px rgba(0, 255, 255, 0.5),
-                0 0 80px rgba(247, 32, 158, 0.5);
-} 
-    
