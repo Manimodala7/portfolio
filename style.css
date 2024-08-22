@@ -249,12 +249,12 @@ section{
   }
   
 .about-container .btn-group .btn:nth-child(1) {
-    animation: slideTop 1s ease forwards;
+    animation: slideRight 1s ease forwards;
     animation-delay: 3.5s;
   }
   
 .about-container .btn-group .btn:nth-child(2) {
-    animation: slideBottom 1s ease forwards;
+    animation: slideLeft 1s ease forwards;
     animation-delay: 3.5s;
   }
   
@@ -1088,7 +1088,7 @@ footer ul li a{
         margin-top: 0.75rem;
         padding: 0.64rem;
     }
-    .nav-links:hover{
+    .nav-links.active{
         display: block;
     }
 
@@ -1198,7 +1198,7 @@ footer ul li a{
         margin-top: 0.75rem;
         padding: 0.64rem;
     }
-    .nav-links:hover{
+    .nav-links.active{
         display: block;
     }
 
@@ -1279,6 +1279,8 @@ footer ul li a{
     }
 }
 
+/* Rest of the CSS remains the same */
+
 
 @keyframes slideRight {
     0% {
@@ -1325,7 +1327,4 @@ footer ul li a{
     from{
         width: 0;
     }
-}
-
-@media (active: active){
 }
