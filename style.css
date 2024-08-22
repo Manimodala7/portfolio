@@ -1356,7 +1356,7 @@ footer ul li a{
     }
 }
 
-@media (hover: hover) {
+@media (hover: none) {
     .logo:hover{
     transform: scale(1.1);
     }
