@@ -113,3 +113,24 @@ document.addEventListener('DOMContentLoaded', function () {
         container2.style.display = 'block'; // Show container2
     }, totalDelay * 1000);
 });
+// Add this to a new file, e.g., script.js
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hoverElements = document.querySelectorAll('.your-hover-element');
+
+  hoverElements.forEach(element => {
+    element.addEventListener('touchstart', function(e) {
+      e.preventDefault(); // Prevent default touch behavior
+      this.classList.toggle('touch-active');
+    });
+  });
+
+  // Close active elements when tapping outside
+  document.addEventListener('touchstart', function(e) {
+    hoverElements.forEach(element => {
+      if (!element.contains(e.target)) {
+        element.classList.remove('touch-active');
+      }
+    });
+  });
+});
