@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
+    function handleInteraction(element, isTouch) {
+        if (isTouch) {
+            interactiveElements.forEach(el => {
+                if (el !== element) el.classList.remove('touch-active');
+            });
+            element.classList.toggle('touch-active');
+        }
+    }
+
     // Menu icon functionality
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
