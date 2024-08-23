@@ -1,28 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const interactiveElements = document.querySelectorAll('.logo, .nav-links li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
-    function handleInteraction(element, isTouch) {
-        if (isTouch) {
-            interactiveElements.forEach(el => {
-                if (el !== element) el.classList.remove('touch-active');
-            });
-            element.classList.toggle('touch-active');
-        }
-    }
-
-    interactiveElements.forEach(element => {
-        if (isTouchDevice) {
-            element.addEventListener('touchstart', function(e) {
-                if (!this.classList.contains('btn') && !this.classList.contains('visit-btn')) {
-                    e.preventDefault();
-                }
-                handleInteraction(this, true);
-            });
-        }
-    });
-
-    // Handle menu icon click
+    // Menu icon functionality
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
 
@@ -30,21 +9,46 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.classList.toggle('active');
     });
 
-    // Handle navigation link clicks
-    const navLinksList = document.querySelectorAll('.nav-links li a, .nav-links1 li a');
-    navLinksList.forEach(link => {
+    // Navigation and smooth scrolling
+    const allLinks = document.querySelectorAll('a[href^="#"]');
+    
+    allLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                navLinks.classList.remove('active'); // Close mobile menu after click
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                navLinks.classList.remove('active'); // Close mobile menu
             }
         });
+
+        if (isTouchDevice) {
+            link.addEventListener('touchstart', function() {
+                this.classList.add('touch-active');
+            });
+            link.addEventListener('touchend', function() {
+                this.classList.remove('touch-active');
+            });
+        }
     });
 
-    // Your existing code for typed text, scroll effects, etc.
+    // Interactive elements
+    const interactiveElements = document.querySelectorAll('.logo, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
+
+    interactiveElements.forEach(element => {
+        if (isTouchDevice) {
+            element.addEventListener('touchstart', function() {
+                this.classList.add('touch-active');
+            });
+            element.addEventListener('touchend', function() {
+                this.classList.remove('touch-active');
+            });
+        }
+    });
+
+    // Typed text effect
     var typed = new Typed(".texted", {
         strings: ["Software Developer", "Web Developer"],
         typeSpeed: 100,
@@ -53,99 +57,69 @@ document.addEventListener('DOMContentLoaded', function() {
         loop: true
     });
 
-    // Scroll effects
-    let sections = document.querySelectorAll('section');
-    let Links = document.querySelectorAll('header ul li a');
+    // Scroll spy effect
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('header ul li a');
 
     window.addEventListener('scroll', () => {
-        sections.forEach(sec => {
-            let top = window.scrollY;
-            let offset = sec.offsetTop - 150;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
 
-            if (top >= offset && top < offset + height) {
-                Links.forEach(link => {
-                    link.classList.remove('active');
-                    document.querySelector('header ul li a[href*=' + id + ']').classList.add('active');
-                });
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').slice(1) === current) {
+                item.classList.add('active');
             }
         });
     });
 
-    const animatedSections = [
-        {
-            id: '#about',
-            elements: ['.about-image', '.info-box h3:nth-of-type(1)', '.info-box h3:nth-of-type(2)', '.info-box h1', '.info-box p', '.btn-group .btn', '.socials']
-        },
-        {
-            id: '#project',
-            elements: ['.section-title', '.project-card', '.project-card a']
-        },
-        {
-            id: '#publication',
-            elements: ['.section-title', '.publication-card', '.publication-card .btn']
-        },
-        {
-            id: '#certificate',
-            elements: ['.section-title', '.grid-card', 'img']
-        },
-        {
-            id: '#skills',
-            elements: ['.section-title', '.bar', '.progress-line span', '.radial-bar .percentage', '.radial-bar .text']
-        }
-    ];
+    // Skills animation
+    const skillsSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-line span');
+    const radialBars = document.querySelectorAll('.radial-bar .path');
 
-    const nav = document.querySelectorAll('.nav-links a');
-    const navLinks1 = document.querySelectorAll('.nav-links1 a');
+    function showProgress() {
+        progressBars.forEach(progressBar => {
+            const value = progressBar.dataset.progress;
+            progressBar.style.opacity = 1;
+            progressBar.style.width = `${value}%`;
+        });
 
-    let skillsAnimationTriggered = false;
-
-    nav.forEach(link => {
-        link.addEventListener('click', handleNavigation);
-    });
-
-    navLinks1.forEach(link => {
-        link.addEventListener('click', handleNavigation);
-    });
-
-    function handleNavigation(event) {
-        event.preventDefault();
-        const targetId = event.target.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-
-        const animatedSection = animatedSections.find(section => section.id === targetId);
-        if (animatedSection) {
-            const animatedElements = targetSection.querySelectorAll(animatedSection.elements.join(', '));
-
-            if (targetId !== '#skills' || !skillsAnimationTriggered) {
-                resetAndTriggerAnimations(animatedElements);
-
-                if (targetId === '#skills') {
-                    skillsAnimationTriggered = true;
-                }
-            }
-        }
-    } 
-
-    function resetAndTriggerAnimations(elements) {
-        elements.forEach(element => {
-            const originalAnimation = window.getComputedStyle(element).animation;
-
-            element.style.animation = 'none';
-            element.offsetHeight;
-            element.style.animation = originalAnimation;
+        radialBars.forEach(radialBar => {
+            const value = radialBar.parentElement.dataset.percent;
+            const radius = radialBar.getAttribute('r');
+            const circumference = 2 * Math.PI * radius;
+            const strokeDashoffset = circumference - (value / 100) * circumference;
+            radialBar.style.strokeDasharray = `${circumference} ${circumference}`;
+            radialBar.style.strokeDashoffset = strokeDashoffset;
         });
     }
 
-    const container1Bars = document.querySelectorAll('.Technical-bars .bar');
-    const container2 = document.getElementById('skills-container2');
+    function hideProgress() {
+        progressBars.forEach(p => {
+            p.style.opacity = 0;
+            p.style.width = 0;
+        });
 
-    const totalDelay = container1Bars.length * 1 + 1;
+        radialBars.forEach(r => {
+            r.style.strokeDashoffset = r.getAttribute('r') * 2 * Math.PI;
+        });
+    }
 
-    setTimeout(() => {
-        container2.style.display = 'block';
-    }, totalDelay * 1000);
+    window.addEventListener('scroll', () => {
+        const sectionPos = skillsSection.getBoundingClientRect().top;
+        const screenPos = window.innerHeight / 2;
+
+        if(sectionPos < screenPos) {
+            showProgress();
+        } else {
+            hideProgress();
+        }
+    });
 });
