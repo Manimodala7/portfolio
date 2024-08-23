@@ -23,31 +23,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 navLinks.classList.remove('active'); // Close mobile menu
             }
         });
-
-        if (isTouchDevice) {
-            link.addEventListener('touchstart', function() {
-                this.classList.add('touch-active');
-            });
-            link.addEventListener('touchend', function() {
-                this.classList.remove('touch-active');
-            });
-        }
     });
 
     // Interactive elements
     const interactiveElements = document.querySelectorAll('.logo, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
 
-    interactiveElements.forEach(element => {
-        if (isTouchDevice) {
-            element.addEventListener('touchstart', function() {
+    function removeAllTouchActive() {
+        interactiveElements.forEach(el => el.classList.remove('touch-active'));
+    }
+
+    if (isTouchDevice) {
+        interactiveElements.forEach(element => {
+            element.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                removeAllTouchActive();
                 this.classList.add('touch-active');
             });
-            element.addEventListener('touchend', function() {
-                this.classList.remove('touch-active');
-            });
-        }
-    });
+        });
 
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.logo, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1')) {
+                removeAllTouchActive();
+            }
+        });
+        
     // Typed text effect
     var typed = new Typed(".texted", {
         strings: ["Software Developer", "Web Developer"],
@@ -80,7 +79,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
+    const skillsSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-line span');
+    const radialBars = document.querySelectorAll('.path');
 
+    function showProgress() {
+        progressBars.forEach(p => {
+            p.style.opacity = 1;
+            p.style.width = p.dataset.progress + '%';
+        });
+
+        radialBars.forEach(r => {
+            const percentage = r.closest('.radial-bar').querySelector('.percentage').textContent;
+            const radius = r.getAttribute('r');
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (parseInt(percentage) / 100) * circumference;
+            r.style.strokeDashoffset = offset;
+        });
+    }
     function hideProgress() {
         progressBars.forEach(p => {
             p.style.opacity = 0;
