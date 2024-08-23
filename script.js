@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     // Menu icon functionality
     const menuIcon = document.querySelector('#menu-icon');
@@ -34,9 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Interactive elements
-        const interactiveElements = document.querySelectorAll('.logo, .nav-links li, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
-
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    const interactiveElements = document.querySelectorAll('.logo, .nav-links li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
 
     function handleInteraction(element, isTouch) {
         if (isTouch) {
@@ -51,32 +50,23 @@ document.addEventListener('DOMContentLoaded', function() {
     interactiveElements.forEach(element => {
         if (isTouchDevice) {
             element.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                const target = e.target.closest('a, button');
-                if (target) {
-                    handleInteraction(target, true);
+                if (!this.classList.contains('btn') && !this.classList.contains('visit-btn')) {
+                    e.preventDefault();
                 }
+
+                handleInteraction(this, true);
             });
 
-            element.addEventListener('touchend', function(e) {
-                const target = e.target.closest('a, button');
-                if (target) {
-                    target.classList.remove('touch-active');
-                }
+            element.addEventListener('touchend', function() {
+                this.classList.remove('touch-active');
             });
         } else {
-            element.addEventListener('mouseenter', function(e) {
-                const target = e.target.closest('a, button');
-                if (target) {
-                    target.classList.add('hover');
-                }
+            element.addEventListener('mouseenter', function() {
+                this.classList.add('hover');
             });
 
-            element.addEventListener('mouseleave', function(e) {
-                const target = e.target.closest('a, button');
-                if (target) {
-                    target.classList.remove('hover');
-                }
+            element.addEventListener('mouseleave', function() {
+                this.classList.remove('hover');
             });
         }
     });
