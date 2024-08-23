@@ -35,38 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Interactive elements
-    const interactiveElements = document.querySelectorAll('.logo, .nav-links li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
-
-    function handleInteraction(element, isTouch) {
-        if (isTouch) {
-            interactiveElements.forEach(el => {
-                if (el !== element) el.classList.remove('touch-active');
-            });
-
-            element.classList.toggle('touch-active');
-        }
-    }
+    const interactiveElements = document.querySelectorAll('.logo, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
 
     interactiveElements.forEach(element => {
         if (isTouchDevice) {
-            element.addEventListener('touchstart', function(e) {
-                if (!this.classList.contains('btn') && !this.classList.contains('visit-btn')) {
-                    e.preventDefault();
-                }
-
-                handleInteraction(this, true);
+            element.addEventListener('touchstart', function() {
+                this.classList.add('touch-active');
             });
-
             element.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
-            });
-        } else {
-            element.addEventListener('mouseenter', function() {
-                this.classList.add('hover');
-            });
-
-            element.addEventListener('mouseleave', function() {
-                this.classList.remove('hover');
             });
         }
     });
