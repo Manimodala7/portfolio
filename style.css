@@ -1450,7 +1450,7 @@ footer ul li a{
     }
   }
   
-  @media (hover: none) and (pointer: coarse) and (min-width:2000px) and (max-width: 2600px){
+  @media (hover: none){
     .touch-active {
         transform: scale(1.02);
         transition: transform 0.3s ease;
