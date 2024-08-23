@@ -7,7 +7,9 @@
     scroll-behavior: smooth;
     list-style: none;
 }
-
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 header{
     position: fixed;
     top: 1rem;
@@ -35,9 +37,6 @@ header{
     opacity: 0;
     animation: slideTop 0.5s ease forwards;
 }
-.logo:hover{
-    transform: scale(1.1);
-}
 .nav-links{
     display: flex;
     gap: 2rem;
@@ -64,9 +63,6 @@ li a::before{
     transition: 0.3s ease-in-out;
     background: cyan;
 }
-li a:hover::before{
-    width: 100%;
-}
 
 .visit-btn{
     padding: 0.8rem 1.5rem;
@@ -83,13 +79,7 @@ li a:hover::before{
     animation: slideTop 1s ease forwards ;
     animation-delay: 1.38s;
 } 
-.visit-btn:hover{
-    transform: scale(1.03);
-    background: whitesmoke;
-    color: black;
-    box-shadow: 0 0 5px cyan,
-    0 0 25px cyan;
-}
+
 
 #menu-icon{
     font-size: 2rem;
@@ -143,13 +133,6 @@ section{
     transition: transform 0.3s ease-in-out;
     position: relative;
     z-index: 1;
-}
-.about img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
-                0 0 40px rgba(247, 32, 158, 0.5),
-                0 0 60px rgba(0, 255, 255, 0.5),
-                0 0 80px rgba(247, 32, 158, 0.5);
 }
 
 @keyframes rotate {
@@ -242,12 +225,6 @@ section{
     text-wrap: nowrap;
     transition: 0.2s ease-in-out;
   }
-  .btn:hover {
-    background: whitesmoke;
-    color: black;
-    box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
-  }
-  
 .about-container .btn-group .btn:nth-child(1) {
     animation: slideRight 1s ease forwards;
     animation-delay: 3.5s;
@@ -262,12 +239,6 @@ section{
     text-decoration: none;
   }
   
-.btn-group .btn:hover {
-    background: whitesmoke;
-    color: black;
-    box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
-  }
-  
 .socials{
     display: flex;
     gap: 2rem;
@@ -279,9 +250,6 @@ section{
     font-size: 1.8rem;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-}
-.socials i:hover{
-    transform: rotate(360deg);
 }
 
 .certificate-info {
@@ -334,12 +302,6 @@ section{
     animation-delay: 0.2s;
   }
   
-  .grid-card:hover {
-    transform: scale(1.02);
-    background-color: rgb(15, 15, 15);
-    color: aliceblue;
-  }
-  
   .grid-card i {
     font-size: 1rem;
     margin-bottom: 0.8rem;
@@ -385,12 +347,6 @@ section{
     background: linear-gradient(to bottom, #52c3ec, #ff00ff);
   }
   
-  
-.grid-card:hover{
-    transform: scale(1.02);
-    background-color: rgb(15, 15, 15);
-    color: aliceblue;
-}
 .grid-card i{
     font-size: 1rem;
     margin-bottom: 0.8rem;
@@ -434,11 +390,7 @@ section{
     animation: slideTop .64s ease forwards;
     animation-delay: calc(.2s * var(--i));
 }
-.project-card:hover{
-    background-color: black;
-    color: whitesmoke;
-    transform: scale(1.02);
-}
+
 .project-card img{
     width: 20vw;
     border-radius: 1rem;
@@ -448,15 +400,6 @@ section{
     opacity: 0;
     animation: slideTop .75s ease forwards;
     animation-delay: calc(.2s * var(--i));
-}
-.project-card:hover .btn{
-    border: 2px solid whitesmoke;
-    color: whitesmoke;
-}
-.project-card:hover .btn:hover{
-    border: 2px solid whitesmoke;
-    background-color: whitesmoke;
-    color: black;
 }
 .project-card h3{
     font-size: 2rem;
@@ -498,21 +441,6 @@ section{
     opacity: 0;
     animation: slideLeft 0.75s ease forwards; /* Reduced animation duration */
     animation-delay: calc(0.12s * var(--i)); /* Staggered delay */
-}
-.publication-card:hover{
-    background-color: black;
-    color: whitesmoke;
-    transform: scale(1.04);
-}
-.publication-card:hover .btn{
-    border: 2px solid whitesmoke;
-    color: whitesmoke;
-}
-.publication-card:hover .btn:hover{
-    border: 2px solid whitesmoke;
-    background-color: whitesmoke;
-    color: black;
-    transform: scale(1.02);
 }
 
 .section-title {
@@ -665,16 +593,6 @@ section{
     margin-bottom: 50px;
     cursor: pointer;
     animation: slideBottom 1s ease forwards ;
-}
-.heading1:hover::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 5px;
-    background-color: rgb(0, 0, 0);
-    bottom: -10px;
-    left: 0;
-    animation: underline-animation 2s ease-in-out infinite;
 }
 @keyframes underline-animation {
     0% {
@@ -1326,5 +1244,162 @@ footer ul li a{
 @keyframes animationProgress{
     from{
         width: 0;
+    }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+
+    .logo:hover{
+        transform: scale(1.1);
+    }
+    li a:hover::before{
+        width: 100%;
+    }
+    .visit-btn:hover{
+        transform: scale(1.03);
+        background: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan,
+        0 0 25px cyan;
+    }
+    .about img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                    0 0 40px rgba(247, 32, 158, 0.5),
+                    0 0 60px rgba(0, 255, 255, 0.5),
+                    0 0 80px rgba(247, 32, 158, 0.5);
+    }
+     .btn:hover {
+        background: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+      }
+    .btn-group .btn:hover {
+        background: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+      }
+    .socials i:hover{
+        transform: rotate(360deg);
+    }
+     .grid-card:hover {
+        transform: scale(1.02);
+        background-color: rgb(15, 15, 15);
+        color: aliceblue;
+      }
+    .project-card:hover{
+        background-color: black;
+        color: whitesmoke;
+        transform: scale(1.02);
+    }
+    .project-card:hover .btn{
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
+    }
+    .project-card:hover .btn:hover{
+        border: 2px solid whitesmoke;
+        background-color: whitesmoke;
+        color: black;
+    }
+    .publication-card:hover{
+        background-color: black;
+        color: whitesmoke;
+        transform: scale(1.04);
+    }
+    .publication-card:hover .btn{
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
+    }
+    .publication-card:hover .btn:hover{
+        border: 2px solid whitesmoke;
+        background-color: whitesmoke;
+        color: black;
+        transform: scale(1.02);
+    }
+    .heading1:hover::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 5px;
+        background-color: rgb(0, 0, 0);
+        bottom: -10px;
+        left: 0;
+        animation: underline-animation 2s ease-in-out infinite;
+    }
+  }
+  
+  @media (hover: none) and (pointer: coarse) {
+    .touch-active {
+        transform: scale(1.02);
+        transition: transform 0.3s ease;
+    }
+
+    .logo.touch-active {
+        transform: scale(1.1);
+    }
+
+    li a.touch-active::before {
+        width: 100%;
+    }
+
+    .visit-btn.touch-active {
+        transform: scale(1.03);
+        background: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan;
+    }
+
+    .about img.touch-active {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+                    0 0 40px rgba(247, 32, 158, 0.5),
+                    0 0 60px rgba(0, 255, 255, 0.5),
+                    0 0 80px rgba(247, 32, 158, 0.5);
+    }
+
+    .btn.touch-active, .btn-group .btn.touch-active {
+        background: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+    }
+
+    .socials i.touch-active {
+        transform: rotate(360deg);
+    }
+
+    .grid-card.touch-active {
+        transform: scale(1.02);
+        background-color: rgb(15, 15, 15);
+        color: aliceblue;
+    }
+
+    .project-card.touch-active, .publication-card.touch-active {
+        background-color: black;
+        color: whitesmoke;
+        transform: scale(1.02);
+    }
+
+    .project-card.touch-active .btn, .publication-card.touch-active .btn {
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
+    }
+
+    .project-card.touch-active .btn.touch-active, .publication-card.touch-active .btn.touch-active {
+        border: 2px solid whitesmoke;
+        background-color: whitesmoke;
+        color: black;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+        transform: scale(1.03);
+    }
+
+    .heading1.touch-active::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background-color: rgb(0, 0, 0);
+        bottom: -10px;
+        left: 0;
     }
 }
