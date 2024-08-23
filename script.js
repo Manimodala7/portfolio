@@ -80,26 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
-    const skillsSection = document.querySelector('#skills');
-    const progressBars = document.querySelectorAll('.progress-line span');
-    const radialBars = document.querySelectorAll('.radial-bar .path');
-
-    function showProgress() {
-        progressBars.forEach(progressBar => {
-            const value = progressBar.dataset.progress;
-            progressBar.style.opacity = 1;
-            progressBar.style.width = `${value}%`;
-        });
-
-        radialBars.forEach(radialBar => {
-            const value = radialBar.parentElement.dataset.percent;
-            const radius = radialBar.getAttribute('r');
-            const circumference = 2 * Math.PI * radius;
-            const strokeDashoffset = circumference - (value / 100) * circumference;
-            radialBar.style.strokeDasharray = `${circumference} ${circumference}`;
-            radialBar.style.strokeDashoffset = strokeDashoffset;
-        });
-    }
 
     function hideProgress() {
         progressBars.forEach(p => {
@@ -122,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hideProgress();
         }
     });
+    
    const animatedSections = [
         {
             id: '#about',
