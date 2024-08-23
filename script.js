@@ -24,12 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        if (isTouchDevice) {
-            link.addEventListener('touchstart', function() {
-                this.classList.add('touch-active');
+        // Add hover effect for non-touch devices
+        if (!isTouchDevice) {
+            link.addEventListener('mouseenter', function() {
+                this.classList.add('hover');
             });
-            link.addEventListener('touchend', function() {
-                this.classList.remove('touch-active');
+            link.addEventListener('mouseleave', function() {
+                this.classList.remove('hover');
             });
         }
     });
@@ -39,11 +40,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     interactiveElements.forEach(element => {
         if (isTouchDevice) {
-            element.addEventListener('touchstart', function() {
+            element.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Prevent default touch behavior
                 this.classList.add('touch-active');
-            });
+            }, {passive: false});
             element.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
+            });
+        } else {
+            // Add hover effect for non-touch devices
+            element.addEventListener('mouseenter', function() {
+                this.classList.add('hover');
+            });
+            element.addEventListener('mouseleave', function() {
+                this.classList.remove('hover');
             });
         }
     });
