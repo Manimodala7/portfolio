@@ -1203,7 +1203,7 @@ footer ul li a{
         gap: 0.64rem;
     }
 }
-@media(max-width: 540px){
+@media(max-width: 480px){
     .section-title{
         text-align: center;
         font-size: 1.96rem;
@@ -1450,7 +1450,7 @@ footer ul li a{
     }
   }
   
-  @media (hover: none) and (pointer: coarse) {
+  @media (hover: none) and (pointer: coarse) and (min-width:2000px) and (max-width: 2600px){
     .touch-active {
         transform: scale(1.02);
         transition: transform 0.3s ease;
