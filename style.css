@@ -63,16 +63,7 @@ li a::before{
     transition: 0.3s ease-in-out;
     background: cyan;
 }
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background: cyan;
-    transition: width 0.3s ease;
-}
+
 .visit-btn{
     padding: 0.8rem 1.5rem;
     border-radius: 3rem;
@@ -1265,9 +1256,6 @@ footer ul li a{
     li a:hover::before{
         width: 100%;
     }
-    .nav-links a.hover::after {
-    width: 100%;
-    }  
     .visit-btn:hover{
         transform: scale(1.03);
         background: whitesmoke;
@@ -1391,9 +1379,7 @@ footer ul li a{
     .nav-links li a.touch-active::before {
         width: 100%;
     }
-    .nav-links a.touch-active::after {
-    width: 100%;
-    }  
+
     .socials i.touch-active {
         transform: rotate(360deg);
     }
