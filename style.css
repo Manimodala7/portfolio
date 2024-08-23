@@ -576,6 +576,12 @@ section{
         width: 100%;
         height: auto;
     }
+    .project-grid {
+        grid-template-columns: 1fr; /* Set to a single column on smaller screens */
+    }
+    .input-box input::placeholder{
+        font-size: 1rem;
+    }
 }
 
 /* New media query for larger screens */
@@ -1197,7 +1203,7 @@ footer ul li a{
         gap: 0.64rem;
     }
 }
-@media(max-width: 600px){
+@media(max-width: 540px){
     .section-title{
         text-align: center;
         font-size: 1.96rem;
