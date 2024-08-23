@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const interactiveElements = document.querySelectorAll('.logo, li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
+    const interactiveElements = document.querySelectorAll('.logo, .nav-links li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1');
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     function handleInteraction(element, isTouch) {
@@ -14,27 +14,37 @@ document.addEventListener('DOMContentLoaded', function() {
     interactiveElements.forEach(element => {
         if (isTouchDevice) {
             element.addEventListener('touchstart', function(e) {
-                e.preventDefault();
+                if (!this.classList.contains('btn') && !this.classList.contains('visit-btn')) {
+                    e.preventDefault();
+                }
                 handleInteraction(this, true);
             });
         }
     });
 
-    if (isTouchDevice) {
-        document.addEventListener('touchstart', function(e) {
-            if (!e.target.closest('.logo, li a, .visit-btn, .about img, .btn, .btn-group .btn, .socials i, .grid-card, .project-card, .publication-card, .heading1')) {
-                interactiveElements.forEach(element => element.classList.remove('touch-active'));
-            }
-        });
-    }
-    
+    // Handle menu icon click
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
 
-    menuIcon.onclick = () => {
+    menuIcon.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-    }
+    });
 
+    // Handle navigation link clicks
+    const navLinksList = document.querySelectorAll('.nav-links li a, .nav-links1 li a');
+    navLinksList.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                navLinks.classList.remove('active'); // Close mobile menu after click
+            }
+        });
+    });
+
+    // Your existing code for typed text, scroll effects, etc.
     var typed = new Typed(".texted", {
         strings: ["Software Developer", "Web Developer"],
         typeSpeed: 100,
@@ -43,10 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
         loop: true
     });
 
+    // Scroll effects
     let sections = document.querySelectorAll('section');
     let Links = document.querySelectorAll('header ul li a');
 
-    window.onscroll = () => {
+    window.addEventListener('scroll', () => {
         sections.forEach(sec => {
             let top = window.scrollY;
             let offset = sec.offsetTop - 150;
@@ -60,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    };
+    });
 
     const animatedSections = [
         {
@@ -117,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    }
+    } 
 
     function resetAndTriggerAnimations(elements) {
         elements.forEach(element => {
