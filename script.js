@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const emailInput = document.querySelector('input[name="email"]');
+
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const email = encodeURIComponent(emailInput.value);
+        const name = encodeURIComponent(form.name.value);
+        const subject = encodeURIComponent(form.subject.value);
+        const content = encodeURIComponent(form.content.value);
+        
+        const mailtoLink = `mailto:manwithmodala37@gmail.com?subject=${subject}&body=Name: ${name}%0AEmail: ${email}%0A%0A${content}`;
+        
+        window.location.href = mailtoLink;
+    });
+    
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     function handleInteraction(element, isTouch) {
