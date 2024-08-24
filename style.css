@@ -885,7 +885,7 @@ section{
     color: #007bff;
 }
 
-.input .btn {
+.input-box .btn {
     padding: 1rem 2rem;
     font-size: 2rem;
     background: rgb(0, 157, 255); 
@@ -931,7 +931,7 @@ section{
     .input-box input {
         padding: 0.5rem 2.7rem;
         width: 80%;
-        font-size: 1.44rem;
+        font-size: 1.28rem;
     }
     .input-box input::placeholder {
         font-size: 1.44rem;
@@ -942,7 +942,7 @@ section{
     .input-box input {
         padding: 0.5rem 2.7rem;
         width: 80%;
-        font-size: 1.28rem;
+        font-size: 1rem;
     }
     .input-box input::placeholder {
         font-size: 1.28rem;
@@ -951,7 +951,7 @@ section{
 
 @media(max-width:480px) {
     .input-box input::placeholder {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
     .input-box input {
         padding: 0.5rem 2.7rem;
@@ -1001,12 +1001,6 @@ footer ul li a{
     .input-box input{
         padding: 2rem 5rem;
         font-size: 2.4rem;
-    }
-    .input input::placeholder{
-        font-size: 2.4rem;
-    }
-    .input-box i{
-        font-size: 2.5rem;
     }
     .about-image::before {
         width: calc(25vw + 20px);
@@ -1520,7 +1514,7 @@ footer ul li a{
         color: #007bff;
     }
 
-    .input .btn:hover {
+    .input-box .btn:hover {
         background: whitesmoke;
         color: black;
         transform: scale(1.02);
@@ -1609,7 +1603,7 @@ footer ul li a{
         color: #007bff;
     }
 
-    .btn:touch-active {
+    input-box.btn:touch-active {
         background: whitesmoke;
         color: black;
         box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
