@@ -439,7 +439,7 @@ section{
     animation-delay: calc(0.1s * var(--i)); /* Reduced delay */
 }
 .publication-card span {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     background: linear-gradient(to right, #52c3ec, #ff00ff);
     background-clip: text;
@@ -833,7 +833,7 @@ section{
     opacity: 0;
 }
 
-.input-box {
+.input-box{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -842,174 +842,26 @@ section{
     gap: 2rem;
     margin-top: 5rem;
 }
-
-.input-box form {
-    width: 100%;
-    max-width: 500px;
-}
-
-.input {
+.input-box input{
     position: relative;
-    margin-bottom: 2rem;
-}
-
-.input input {
-    width: 100%;
     border-radius: 3rem;
-    border: 2px solid black;
+    border: 2px solid  black;
     padding: 2rem 8rem;
     font-size: 3rem;
-    transition: all 0.3s ease;
 }
-
-.input input::placeholder {
+.input-box input::placeholder{
     font-size: 3rem;
 }
-
-.input i {
+.input{
+    position: relative;
+}
+.input i{
     position: absolute;
     font-size: 4rem;
     top: 50%;
-    left: 25px;
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
+    left: 10px;
+    transform: translate(50%, -50%);
 }
-
-.input-box input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-}
-
-.input input:focus + i {
-    color: #007bff;
-}
-
-.input p {
-    margin-bottom: 15px;
-    color: #555;
-    font-size: 14px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form input,
-form textarea {
-    margin-bottom: 12px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-}
-
-form input:focus,
-form textarea:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-form textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-.input-box .btn {
-    padding: 1rem 2rem;
-    font-size: 2rem;
-    background: rgb(0, 157, 255); 
-    cursor: pointer; 
-    color: whitesmoke;
-    text-wrap: nowrap;
-    display: inline-block;
-    border: none;
-    border-radius: 3rem;
-    transition: all 0.3s ease;
-    opacity:0;
-    animation: slideBottom 0.75s ease forwards; /* Reduced animation duration */
-    animation-delay: 2s;
-}
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-#contact-form input,
-#contact-form textarea {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#contact-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-/* Media queries */
-@media(max-width: 1280px) {
-    .input-box input {
-        padding: 2rem 5rem;
-        font-size: 2.4rem;
-    }
-    .input input::placeholder {
-        font-size: 2.4rem;
-    }
-    .input-box i {
-        font-size: 2.5rem;
-    }
-}
-
-@media(max-width:972px) {
-    .input-box input {
-        padding: 1rem 2rem;
-        font-size: 1.44rem;
-    }
-    .input-box input::placeholder {
-        font-size: 1.44rem;
-    }
-    .input-box i {
-        display: none;
-    }
-}
-
-@media(max-width:720px) {
-    .input-box input {
-        padding: 0.5rem 2.7rem;
-        width: 80%;
-        font-size: 1.28rem;
-    }
-    .input-box input::placeholder {
-        font-size: 1.44rem;
-    }
-}
-
-@media(max-width:600px) {
-    .input-box input {
-        padding: 0.5rem 2.7rem;
-        width: 80%;
-        font-size: 1rem;
-    }
-    .input-box input::placeholder {
-        font-size: 1.28rem;
-    }
-}
-
-@media(max-width:480px) {
-    .input-box input::placeholder {
-        font-size: 0.8rem;
-    }
-    .input-box input {
-        padding: 0.5rem 2.7rem;
-        width: 80%;
-        font-size: 1.28rem;
-    }
-}
-
 
 footer{
     bottom: 0;
@@ -1052,6 +904,12 @@ footer ul li a{
         padding: 2rem 5rem;
         font-size: 2.4rem;
     }
+    .input input::placeholder{
+        font-size: 2.4rem;
+    }
+    .input-box i{
+        font-size: 2.5rem;
+    }
     .about-image::before {
         width: calc(25vw + 20px);
         height: calc(25vw + 20px);
@@ -1083,6 +941,16 @@ footer ul li a{
         width: 40vw;
     }
 
+    .input-box input{
+        padding: 1rem 2rem;
+        font-size: 1.44rem;
+    }
+    .input-box input::placeholder{
+        font-size: 1.44rem;
+    }
+    .input-box i{
+        display: none;
+    }
     .grid{
         grid-template-columns: repeat(1, 1fr);
     }
@@ -1162,6 +1030,14 @@ footer ul li a{
     }
     .about-container h1{
         font-size: 2.7rem;
+    }
+    .input-box input{
+        padding: 0.5rem 2.7rem;
+        width: 80%;
+        font-size: 1.44rem;
+    }
+    .input-box input::placeholder{
+        font-size: 1.44rem;
     }
     .about-image::before {
         width: calc(55vw + 20px);
@@ -1264,6 +1140,14 @@ footer ul li a{
     }
     .about-container h1{
         font-size: 2.7rem;
+    }
+    .input-box input{
+        padding: 0.5rem 2.7rem;
+        width: 80%;
+        font-size: 1.28rem;
+    }
+    .input-box input::placeholder{
+        font-size: 1.28rem;
     }
     .about-image::before {
         width: calc(55vw + 20px);
@@ -1371,6 +1255,14 @@ footer ul li a{
     }
     .about-container h1{
         font-size: 2.7rem;
+    }
+    .input-box input{
+        padding: 0.5rem 2.7rem;
+        width: 80%;
+        font-size: 1.28rem;
+    }
+    .input-box input::placeholder{
+        font-size: 1.28rem;
     }
     .about-image::before {
         width: calc(55vw + 20px);
@@ -1556,21 +1448,6 @@ footer ul li a{
         left: 0;
         animation: underline-animation 2s ease-in-out infinite;
     }
-    .input-box input:hover {
-        border-color: #007bff;
-    }
-
-    .input:hover i {
-        color: #007bff;
-    }
-
-    .input-box .btn:hover {
-        background: whitesmoke;
-        color: black;
-        transform: scale(1.02);
-        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
-    }
-
   }
   
   @media (hover: none) and (pointer:coarse) {
@@ -1644,20 +1521,6 @@ footer ul li a{
         background-color: rgb(0, 0, 0);
         bottom: -10px;
         left: 0;
-    }
-    .input-box input:touch-active {
-        border-color: #007bff;
-    }
-
-    .input:touch-active i {
-        color: #007bff;
-    }
-
-    input-box.btn:touch-active {
-        background: whitesmoke;
-        color: black;
-        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
-        transform: scale(1.02);
     }
 }
 /* Touch device specific styles */
@@ -1771,34 +1634,9 @@ footer ul li a{
         flex-direction: column;
         align-items: center;
     }
-}
-@media (max-width: 1280px) {
-    .input-box {
-        max-width: 90%;
-    }
-}
 
-@media (max-width: 972px) {
-    .input-box {
-        max-width: 95%;
-    }
-}
-
-@media (max-width: 720px) {
-    form input,
-    form textarea {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 600px) {
-    .input-box {
-        padding: 15px;
-    }
-    
-    form input,
-    form textarea,
-    .btn {
-        font-size: 14px;
+    .input-box input {
+        width: 90%;
+        font-size: 1rem;
     }
 }
