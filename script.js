@@ -1,45 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Email functionality
-    const form = document.getElementById('contact-form');
-    const sendBtn = document.getElementById('send-btn');
-
-    if (form && sendBtn) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            sendBtn.disabled = true;
-            sendBtn.textContent = 'Sending...';
-
-            fetch(this.action, {
-                method: this.method,
-                body: new FormData(this)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Email sent successfully!');
-                    form.reset();
-                } else {
-                    throw new Error('Something went wrong');
-                }
-            })
-            .catch(error => {
-                alert('There was an error sending your message. Please try again.');
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                sendBtn.disabled = false;
-                sendBtn.textContent = 'Send Email';
-            });
-        });
-
-        // Add touch event for mobile devices
-        sendBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevent default touch behavior
-            form.dispatchEvent(new Event('submit'));
-        });
-    }
-
-    // Touch device detection
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     function handleInteraction(element, isTouch) {
@@ -55,11 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
 
-    if (menuIcon) {
-        menuIcon.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
 
     // Navigation and smooth scrolling
     const allLinks = document.querySelectorAll('a[href^="#"]');
@@ -72,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
-                if (navLinks) navLinks.classList.remove('active'); // Close mobile menu
+                navLinks.classList.remove('active'); // Close mobile menu
             }
         });
 
@@ -101,15 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Typed text effect
-    if (typeof Typed !== 'undefined') {
-        var typed = new Typed(".texted", {
-            strings: ["Software Developer", "Web Developer"],
-            typeSpeed: 100,
-            backSpeed: 100,
-            backDelay: 1000,
-            loop: true
-        });
-    }
+    var typed = new Typed(".texted", {
+        strings: ["Software Developer", "Web Developer"],
+        typeSpeed: 100,
+        backSpeed: 100,
+        backDelay: 1000,
+        loop: true
+    });
 
     // Scroll spy effect
     const sections = document.querySelectorAll('section');
@@ -134,9 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
-    const skillsSection = document.querySelector('#skills');
-    const progressBars = document.querySelectorAll('.progress-line span');
-    const radialBars = document.querySelectorAll('.radial-bar circle');
 
     function hideProgress() {
         progressBars.forEach(p => {
@@ -149,35 +101,94 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function showProgress() {
-        progressBars.forEach(p => {
-            p.style.opacity = 1;
-            p.style.width = p.dataset.progress;
-        });
-
-        radialBars.forEach(r => {
-            const radius = r.getAttribute('r');
-            const circumference = radius * 2 * Math.PI;
-            const offset = circumference - (r.parentElement.dataset.percent / 100) * circumference;
-            r.style.strokeDashoffset = offset;
-        });
-    }
-
     window.addEventListener('scroll', () => {
-        if (skillsSection) {
-            const sectionPos = skillsSection.getBoundingClientRect().top;
-            const screenPos = window.innerHeight / 2;
+        const sectionPos = skillsSection.getBoundingClientRect().top;
+        const screenPos = window.innerHeight / 2;
 
-            if(sectionPos < screenPos) {
-                showProgress();
-            } else {
-                hideProgress();
-            }
+        if(sectionPos < screenPos) {
+            showProgress();
+        } else {
+            hideProgress();
         }
     });
 
-    // Section animations
-    const animatedSections = [
+    const form = document.querySelector('.input-box form');
+    const emailInput = document.querySelector('.input-box input[type="email"]');
+    const submitButton = document.querySelector('.input-box .btn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Basic email validation
+        const email = emailInput.value.trim();
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Here you would typically send the email to your server
+        // For this example, we'll just log it to the console and show an alert
+        console.log('Email submitted:', email);
+        alert('Thank you! Your email has been submitted.');
+
+        // Clear the input field after submission
+        emailInput.value = '';
+    });
+
+    // Add some interactivity to the submit button
+    submitButton.addEventListener('mousedown', function() {
+        this.style.transform = 'scale(0.95)';
+    });
+
+    submitButton.addEventListener('mouseup', function() {
+        this.style.transform = 'scale(1)';
+    });
+
+    // Function to validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    const form = document.querySelector('.input-box form');
+    const emailInput = document.querySelector('.input-box input[type="email"]');
+    const submitButton = document.querySelector('.input-box .btn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Basic email validation
+        const email = emailInput.value.trim();
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Here you would typically send the email to your server
+        // For this example, we'll just log it to the console and show an alert
+        console.log('Email submitted:', email);
+        alert('Thank you! Your email has been submitted.');
+
+        // Clear the input field after submission
+        emailInput.value = '';
+    });
+
+    // Add some interactivity to the submit button
+    submitButton.addEventListener('mousedown', function() {
+        this.style.transform = 'scale(0.95)';
+    });
+
+    submitButton.addEventListener('mouseup', function() {
+        this.style.transform = 'scale(1)';
+    });
+
+    // Function to validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+   const animatedSections = [
         {
             id: '#about',
             elements: ['.about-image', '.info-box h3:nth-of-type(1)', '.info-box h3:nth-of-type(2)', '.info-box h1', '.info-box p', '.btn-group .btn', '.socials']
@@ -198,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: '#skills',
             elements: ['.section-title', '.bar', '.progress-line span', '.radial-bar .percentage', '.radial-bar .text']
         },
-        {
+       {
             id: '#contact',
             elements: ['.input-box .btn']
         }
@@ -222,19 +233,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetId = event.target.getAttribute('href');
         const targetSection = document.querySelector(targetId);
 
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+        targetSection.scrollIntoView({ behavior: 'smooth' });
 
-            const animatedSection = animatedSections.find(section => section.id === targetId);
-            if (animatedSection) {
-                const animatedElements = targetSection.querySelectorAll(animatedSection.elements.join(', '));
+        const animatedSection = animatedSections.find(section => section.id === targetId);
+        if (animatedSection) {
+            const animatedElements = targetSection.querySelectorAll(animatedSection.elements.join(', '));
 
-                if (targetId !== '#skills' || !skillsAnimationTriggered) {
-                    resetAndTriggerAnimations(animatedElements);
+            if (targetId !== '#skills' || !skillsAnimationTriggered) {
+                resetAndTriggerAnimations(animatedElements);
 
-                    if (targetId === '#skills') {
-                        skillsAnimationTriggered = true;
-                    }
+                if (targetId === '#skills') {
+                    skillsAnimationTriggered = true;
                 }
             }
         }
@@ -253,11 +262,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const container1Bars = document.querySelectorAll('.Technical-bars .bar');
     const container2 = document.getElementById('skills-container2');
 
-    if (container1Bars.length > 0 && container2) {
-        const totalDelay = container1Bars.length * 1 + 1;
+    const totalDelay = container1Bars.length * 1 + 1;
 
-        setTimeout(() => {
-            container2.style.display = 'block';
-        }, totalDelay * 1000);
-    }
+    setTimeout(() => {
+        container2.style.display = 'block';
+    }, totalDelay * 1000);
 });
