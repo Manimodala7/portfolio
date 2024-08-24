@@ -4,19 +4,49 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = contactForm.querySelector('input[type="text"]');
     const submitBtn = contactForm.querySelector('.btn');
 
-    submitBtn.addEventListener('click', function(e) {
+    onst form = document.querySelector('.input-box form');
+    const submitBtn = form.querySelector('.btn');
+
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const email = encodeURIComponent(emailInput.value);
+        const email = form.querySelector('input[name="email"]').value.trim();
         
-        // You can customize the subject and body as needed
-        const subject = encodeURIComponent("Contact from Website");
-        const body = encodeURIComponent("Email: " + email + "\n\nMessage: ");
-        
-        const mailtoLink = `mailto:manwith3mvr@gmail.com?subject=${subject}&body=${body}`;
-        
-        window.location.href = mailtoLink;
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        // Use FormSubmit service
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Thank you! Your message has been sent successfully.');
+                form.reset();
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error sending your message. Please try again.');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+        });
     });
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
     
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
