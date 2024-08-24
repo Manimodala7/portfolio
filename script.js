@@ -16,6 +16,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         window.location.href = mailtoLink;
     });
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var form = this;
+    var btn = form.querySelector('.btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Email sent successfully!');
+            form.reset();
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
+    .catch(error => {
+        alert('There was an error sending your message. Please try again.');
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Send Email';
+    });
     
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
