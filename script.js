@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const contactForm = document.querySelector('.contact .input-box');
+    const emailInput = contactForm.querySelector('input[type="text"]');
+    const submitBtn = contactForm.querySelector('.btn');
+
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const email = encodeURIComponent(emailInput.value);
+        
+        // You can customize the subject and body as needed
+        const subject = encodeURIComponent("Contact from Website");
+        const body = encodeURIComponent("Email: " + email + "\n\nMessage: ");
+        
+        const mailtoLink = `mailto:manwith3mvr@gmail.com?subject=${subject}&body=${body}`;
+        
+        window.location.href = mailtoLink;
+    });
     
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
