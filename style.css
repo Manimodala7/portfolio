@@ -439,7 +439,7 @@ section{
     animation-delay: calc(0.1s * var(--i)); /* Reduced delay */
 }
 .publication-card span {
-    font-size: 1.56rem;
+    font-size: 1.44rem;
     font-weight: 600;
     background: linear-gradient(to right, #52c3ec, #ff00ff);
     background-clip: text;
