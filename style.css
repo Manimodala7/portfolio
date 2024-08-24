@@ -885,6 +885,38 @@ section{
     color: #007bff;
 }
 
+.input p {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input,
+form textarea {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
 .input-box .btn {
     padding: 1rem 2rem;
     font-size: 2rem;
