@@ -900,6 +900,25 @@ section{
     animation: slideBottom 0.75s ease forwards; /* Reduced animation duration */
     animation-delay: 2s;
 }
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#contact-form input,
+#contact-form textarea,
+.input input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
 /* Media queries */
 @media(max-width: 1280px) {
     .input-box input {
