@@ -1,32 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Email functionality
     const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const emailInput = document.querySelector('input[name="email"]');
+    const sendBtn = document.getElementById('send-btn');
 
-    if (submitBtn) {
-        submitBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const email = encodeURIComponent(emailInput.value);
-            const name = encodeURIComponent(form.name.value);
-            const subject = encodeURIComponent(form.subject.value);
-            const content = encodeURIComponent(form.content.value);
-            
-            const mailtoLink = `mailto:manwithmodala37@gmail.com?subject=${subject}&body=Name: ${name}%0AEmail: ${email}%0A%0A${content}`;
-            
-            window.location.href = mailtoLink;
-        });
-    }
-
-    // Form submission with fetch
-    if (form) {
+    if (form && sendBtn) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            var btn = this.querySelector('.btn');
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Sending...';
 
             fetch(this.action, {
                 method: this.method,
@@ -35,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 if (response.ok) {
                     alert('Email sent successfully!');
-                    this.reset();
+                    form.reset();
                 } else {
                     throw new Error('Something went wrong');
                 }
@@ -45,9 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error:', error);
             })
             .finally(() => {
-                btn.disabled = false;
-                btn.textContent = 'Send Email';
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Send Email';
             });
+        });
+
+        // Add touch event for mobile devices
+        sendBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent default touch behavior
+            form.dispatchEvent(new Event('submit'));
         });
     }
 
