@@ -112,29 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const emailInput = document.querySelector('.input-box input[type="email"]');
-    const submitButton = document.querySelector('.input-box .btn');
-
-    if (submitButton) {
-        submitButton.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default button behavior
-            handleSubmit();
-        });
-    }
-
-    function handleSubmit() {
-        // Basic email validation
-        const email = emailInput.value.trim();
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-    // Function to validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
     
    const animatedSections = [
         {
