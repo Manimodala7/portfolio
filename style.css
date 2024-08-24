@@ -907,8 +907,7 @@ section{
 }
 
 #contact-form input,
-#contact-form textarea,
-.input input {
+#contact-form textarea {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
