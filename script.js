@@ -112,13 +112,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const form = document.querySelector('.input-box form');
-    const emailInput = document.querySelector('.input-box input[type="email"]');
+   const form = document.querySelector('.input-box form');
+    const emailInput = document.querySelector('.input-box input[type="text"]');
     const submitButton = document.querySelector('.input-box .btn');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the form from submitting normally
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+            handleSubmit();
+        });
+    }
 
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            handleSubmit();
+        });
+    }
+
+    function handleSubmit() {
         // Basic email validation
         const email = emailInput.value.trim();
         if (!isValidEmail(email)) {
@@ -126,29 +138,23 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Here you would typically send the email to your server
-        // For this example, we'll just log it to the console and show an alert
-        console.log('Email submitted:', email);
-        alert('Thank you! Your email has been submitted.');
+        // Open Gmail compose window in a new tab
+        const to = 'manwithmodala37@gmail.com'; // Your pre-composed email
+        const subject = encodeURIComponent('New Subscription');
+        const body = encodeURIComponent(`New subscriber email: ${email}`);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
 
-        // Clear the input field after submission
+        // Clear the input field after opening Gmail
         emailInput.value = '';
-    });
-
-    // Add some interactivity to the submit button
-    submitButton.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.95)';
-    });
-
-    submitButton.addEventListener('mouseup', function() {
-        this.style.transform = 'scale(1)';
-    });
+    }
 
     // Function to validate email format
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
+
     
    const animatedSections = [
         {
