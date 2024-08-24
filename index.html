@@ -271,20 +271,24 @@ tools.</p>
     </section>
 
     <section class="contact" id="contact">
-        
     <div class="input-box">
-        
         <h2 class="section-title">Contact Me</h2>
-                    
-            <div class="input">
-                <p>Mobile: +91 7396298386</p>
-                <input type="email" name="body" placeholder="example@gmail.com" required>
-                <i class="fa-solid fa-envelope"></i>
-            </div>
-        <a href="mailto:manwithmodala37@gmail.com" class="btn email-link">Submit</a>    
-    </div>
         
-</section>
+        <div class="input">
+            <p>Mobile: +91 7396298386</p>
+            <input type="email" name="email" placeholder="example@gmail.com" required>
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+        
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="content" placeholder="Your Message" required></textarea>
+        </form>
+        
+        <a lass="btn" id="submit-btn">Submit</a>    
+    </div>
+   </section>
     
     <footer>
         <ul class="nav-links1">
@@ -300,13 +304,6 @@ tools.</p>
 
     </footer>
      
-    <script src="script.js">
-        document.addEventListener('DOMContentLoaded', function() {
-        var emailLink = document.querySelector('.email-link');
-        if (emailLink) {
-            emailLink.href = 'mailto:manwithmodala37@gmail.com';
-        }
-    });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
