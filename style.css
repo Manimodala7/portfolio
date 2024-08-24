@@ -1772,3 +1772,33 @@ footer ul li a{
         align-items: center;
     }
 }
+@media (max-width: 1280px) {
+    .input-box {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 972px) {
+    .input-box {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 720px) {
+    form input,
+    form textarea {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .input-box {
+        padding: 15px;
+    }
+    
+    form input,
+    form textarea,
+    .btn {
+        font-size: 14px;
+    }
+}
