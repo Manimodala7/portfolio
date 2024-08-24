@@ -112,16 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const form = document.querySelector('.input-box form');
     const emailInput = document.querySelector('.input-box input[type="email"]');
     const submitButton = document.querySelector('.input-box .btn');
-
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form from submitting normally
-            handleSubmit();
-        });
-    }
 
     if (submitButton) {
         submitButton.addEventListener('click', function(e) {
@@ -137,19 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please enter a valid email address.');
             return;
         }
-
-        // Construct Gmail URL
-        const to = 'manwithmodala37@gmail.com';
-        const subject = encodeURIComponent('New Contact from Website');
-        const body = encodeURIComponent(`Contact email: ${email}`);
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
-
-        // Open Gmail in a new tab
-        window.open(gmailUrl, '_blank');
-
-        // Clear the input field after opening Gmail
-        emailInput.value = '';
-    }
 
     // Function to validate email format
     function isValidEmail(email) {
