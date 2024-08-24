@@ -300,6 +300,13 @@ tools.</p>
 
     </footer>
      
-    <script src="script.js"></script>
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', function() {
+        var emailLink = document.querySelector('.contact .btn');
+        if (emailLink) {
+            emailLink.href = 'mailto:manwithmodala37@gmail.com';
+        }
+    });
+    </script>
 </body>
 </html>
