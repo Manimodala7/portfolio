@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
+    function handleInteraction(element, isTouch) {
+        if (isTouch) {
+            interactiveElements.forEach(el => {
+                if (el !== element) el.classList.remove('touch-active');
+            });
+            element.classList.toggle('touch-active');
+        }
+    }
 
     // Menu icon functionality
     const menuIcon = document.querySelector('#menu-icon');
@@ -27,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isTouchDevice) {
             link.addEventListener('touchstart', function() {
                 this.classList.add('touch-active');
-            }, { passive: true });
+            });
             link.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
-            }, { passive: true });
+            });
         }
     });
 
@@ -41,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isTouchDevice) {
             element.addEventListener('touchstart', function() {
                 this.classList.add('touch-active');
-            }, { passive: true });
+            });
             element.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
-            }, { passive: true });
+            });
         }
     });
 
@@ -80,26 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
-    const skillsSection = document.querySelector('#skills');
-    const progressBars = document.querySelectorAll('.progress-line span');
-    const radialBars = document.querySelectorAll('.radial-bar circle');
-
-    function showProgress() {
-        progressBars.forEach(p => {
-            const value = p.dataset.progress;
-            p.style.opacity = 1;
-            p.style.width = `${value}%`;
-        });
-
-        radialBars.forEach(r => {
-            const value = r.parentElement.dataset.percent;
-            const radius = r.getAttribute('r');
-            const circumference = radius * 2 * Math.PI;
-            const offset = circumference - (value / 100) * circumference;
-            r.style.strokeDasharray = `${circumference} ${circumference}`;
-            r.style.strokeDashoffset = offset;
-        });
-    }
 
     function hideProgress() {
         progressBars.forEach(p => {
@@ -123,81 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const form = document.querySelector('.input-box form');
-    const emailInput = document.querySelector('.input-box input[type="email"]');
-    const submitButton = document.querySelector('.input-box .btn');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the form from submitting normally
-
-        // Basic email validation
-        const email = emailInput.value.trim();
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        // Here you would typically send the email to your server
-        // For this example, we'll just log it to the console and show an alert
-        console.log('Email submitted:', email);
-        alert('Thank you! Your email has been submitted.');
-
-        // Clear the input field after submission
-        emailInput.value = '';
-    });
-
-    // Add some interactivity to the submit button
-    submitButton.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.95)';
-    });
-
-    submitButton.addEventListener('mouseup', function() {
-        this.style.transform = 'scale(1)';
-    });
-
-    // Function to validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    const form = document.querySelector('.input-box form');
-    const emailInput = document.querySelector('.input-box input[type="email"]');
-    const submitButton = document.querySelector('.input-box .btn');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the form from submitting normally
-
-        // Basic email validation
-        const email = emailInput.value.trim();
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        // Here you would typically send the email to your server
-        // For this example, we'll just log it to the console and show an alert
-        console.log('Email submitted:', email);
-        alert('Thank you! Your email has been submitted.');
-
-        // Clear the input field after submission
-        emailInput.value = '';
-    });
-
-    // Add some interactivity to the submit button
-    submitButton.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.95)';
-    });
-
-    submitButton.addEventListener('mouseup', function() {
-        this.style.transform = 'scale(1)';
-    });
-
-    // Function to validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
     
    const animatedSections = [
         {
