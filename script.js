@@ -209,17 +209,17 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Create mailto link
-        const mailtoLink = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${email}%0A%0AMessage: `;
+        // Create Gmail compose URL
+        const gmailComposeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=manwith3mvr@gmail.com&su=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
         
-        // Open default email client
-        window.location.href = mailtoLink;
+        // Open Gmail compose page in a new tab
+        window.open(gmailComposeUrl, '_blank');
 
         // Clear the input field
         emailInput.value = '';
 
         // Show a confirmation message
-        alert('Email client opened. Please compose your message and send.');
+        alert('Gmail compose window opened. Please complete your message and send.');
     });
 
     function isValidEmail(email) {
