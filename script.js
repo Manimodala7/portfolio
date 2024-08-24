@@ -1,51 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+    // Email functionality
     const form = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
     const emailInput = document.querySelector('input[name="email"]');
 
-    submitBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const email = encodeURIComponent(emailInput.value);
-        const name = encodeURIComponent(form.name.value);
-        const subject = encodeURIComponent(form.subject.value);
-        const content = encodeURIComponent(form.content.value);
-        
-        const mailtoLink = `mailto:manwithmodala37@gmail.com?subject=${subject}&body=Name: ${name}%0AEmail: ${email}%0A%0A${content}`;
-        
-        window.location.href = mailtoLink;
-    });
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = encodeURIComponent(emailInput.value);
+            const name = encodeURIComponent(form.name.value);
+            const subject = encodeURIComponent(form.subject.value);
+            const content = encodeURIComponent(form.content.value);
+            
+            const mailtoLink = `mailto:manwithmodala37@gmail.com?subject=${subject}&body=Name: ${name}%0AEmail: ${email}%0A%0A${content}`;
+            
+            window.location.href = mailtoLink;
+        });
+    }
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    var form = this;
-    var btn = form.querySelector('.btn');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
+    // Form submission with fetch
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var btn = this.querySelector('.btn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
 
-    fetch(form.action, {
-        method: form.method,
-        body: new FormData(form)
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Email sent successfully!');
-            form.reset();
-        } else {
-            throw new Error('Something went wrong');
-        }
-    })
-    .catch(error => {
-        alert('There was an error sending your message. Please try again.');
-        console.error('Error:', error);
-    })
-    .finally(() => {
-        btn.disabled = false;
-        btn.textContent = 'Send Email';
-    });
-    
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Email sent successfully!');
+                    this.reset();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            })
+            .catch(error => {
+                alert('There was an error sending your message. Please try again.');
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = 'Send Email';
+            });
+        });
+    }
+
+    // Touch device detection
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     function handleInteraction(element, isTouch) {
@@ -61,9 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
 
-    menuIcon.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    if (menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
 
     // Navigation and smooth scrolling
     const allLinks = document.querySelectorAll('a[href^="#"]');
@@ -76,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
-                navLinks.classList.remove('active'); // Close mobile menu
+                if (navLinks) navLinks.classList.remove('active'); // Close mobile menu
             }
         });
 
@@ -105,13 +113,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Typed text effect
-    var typed = new Typed(".texted", {
-        strings: ["Software Developer", "Web Developer"],
-        typeSpeed: 100,
-        backSpeed: 100,
-        backDelay: 1000,
-        loop: true
-    });
+    if (typeof Typed !== 'undefined') {
+        var typed = new Typed(".texted", {
+            strings: ["Software Developer", "Web Developer"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,
+            loop: true
+        });
+    }
 
     // Scroll spy effect
     const sections = document.querySelectorAll('section');
@@ -136,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
+    const skillsSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-line span');
+    const radialBars = document.querySelectorAll('.radial-bar circle');
 
     function hideProgress() {
         progressBars.forEach(p => {
@@ -148,19 +161,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    window.addEventListener('scroll', () => {
-        const sectionPos = skillsSection.getBoundingClientRect().top;
-        const screenPos = window.innerHeight / 2;
+    function showProgress() {
+        progressBars.forEach(p => {
+            p.style.opacity = 1;
+            p.style.width = p.dataset.progress;
+        });
 
-        if(sectionPos < screenPos) {
-            showProgress();
-        } else {
-            hideProgress();
+        radialBars.forEach(r => {
+            const radius = r.getAttribute('r');
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (r.parentElement.dataset.percent / 100) * circumference;
+            r.style.strokeDashoffset = offset;
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        if (skillsSection) {
+            const sectionPos = skillsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 2;
+
+            if(sectionPos < screenPos) {
+                showProgress();
+            } else {
+                hideProgress();
+            }
         }
     });
 
-    
-   const animatedSections = [
+    // Section animations
+    const animatedSections = [
         {
             id: '#about',
             elements: ['.about-image', '.info-box h3:nth-of-type(1)', '.info-box h3:nth-of-type(2)', '.info-box h1', '.info-box p', '.btn-group .btn', '.socials']
@@ -181,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: '#skills',
             elements: ['.section-title', '.bar', '.progress-line span', '.radial-bar .percentage', '.radial-bar .text']
         },
-       {
+        {
             id: '#contact',
             elements: ['.input-box .btn']
         }
@@ -205,17 +234,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetId = event.target.getAttribute('href');
         const targetSection = document.querySelector(targetId);
 
-        targetSection.scrollIntoView({ behavior: 'smooth' });
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
 
-        const animatedSection = animatedSections.find(section => section.id === targetId);
-        if (animatedSection) {
-            const animatedElements = targetSection.querySelectorAll(animatedSection.elements.join(', '));
+            const animatedSection = animatedSections.find(section => section.id === targetId);
+            if (animatedSection) {
+                const animatedElements = targetSection.querySelectorAll(animatedSection.elements.join(', '));
 
-            if (targetId !== '#skills' || !skillsAnimationTriggered) {
-                resetAndTriggerAnimations(animatedElements);
+                if (targetId !== '#skills' || !skillsAnimationTriggered) {
+                    resetAndTriggerAnimations(animatedElements);
 
-                if (targetId === '#skills') {
-                    skillsAnimationTriggered = true;
+                    if (targetId === '#skills') {
+                        skillsAnimationTriggered = true;
+                    }
                 }
             }
         }
@@ -234,9 +265,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const container1Bars = document.querySelectorAll('.Technical-bars .bar');
     const container2 = document.getElementById('skills-container2');
 
-    const totalDelay = container1Bars.length * 1 + 1;
+    if (container1Bars.length > 0 && container2) {
+        const totalDelay = container1Bars.length * 1 + 1;
 
-    setTimeout(() => {
-        container2.style.display = 'block';
-    }, totalDelay * 1000);
+        setTimeout(() => {
+            container2.style.display = 'block';
+        }, totalDelay * 1000);
+    }
 });
