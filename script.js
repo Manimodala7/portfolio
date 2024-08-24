@@ -193,4 +193,37 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         container2.style.display = 'block';
     }, totalDelay * 1000);
+
+
+    const contactForm = document.querySelector('.contact .input-box');
+    const emailInput = contactForm.querySelector('input[type="text"]');
+    const submitBtn = contactForm.querySelector('.btn');
+
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Create mailto link
+        const mailtoLink = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${email}%0A%0AMessage: `;
+        
+        // Open default email client
+        window.location.href = mailtoLink;
+
+        // Clear the input field
+        emailInput.value = '';
+
+        // Show a confirmation message
+        alert('Email client opened. Please compose your message and send.');
+    });
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 });
