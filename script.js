@@ -149,44 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-
-    const form = document.querySelector('.input-box form');
-    const emailInput = document.querySelector('.input-box input[type="email"]');
-    const submitButton = document.querySelector('.input-box .btn');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the form from submitting normally
-
-        // Basic email validation
-        const email = emailInput.value.trim();
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        // Here you would typically send the email to your server
-        // For this example, we'll just log it to the console and show an alert
-        console.log('Email submitted:', email);
-        alert('Thank you! Your email has been submitted.');
-
-        // Clear the input field after submission
-        emailInput.value = '';
-    });
-
-    // Add some interactivity to the submit button
-    submitButton.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.95)';
-    });
-
-    submitButton.addEventListener('mouseup', function() {
-        this.style.transform = 'scale(1)';
-    });
-
-    // Function to validate email format
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
     
    const animatedSections = [
         {
