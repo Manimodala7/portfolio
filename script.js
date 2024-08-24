@@ -1,15 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
-    function handleInteraction(element, isTouch) {
-        if (isTouch) {
-            interactiveElements.forEach(el => {
-                if (el !== element) el.classList.remove('touch-active');
-            });
-            element.classList.toggle('touch-active');
-        }
-    }
-
     // Menu icon functionality
     const menuIcon = document.querySelector('#menu-icon');
     const navLinks = document.querySelector('.nav-links');
@@ -36,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isTouchDevice) {
             link.addEventListener('touchstart', function() {
                 this.classList.add('touch-active');
-            });
+            }, { passive: true });
             link.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
-            });
+            }, { passive: true });
         }
     });
 
@@ -50,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isTouchDevice) {
             element.addEventListener('touchstart', function() {
                 this.classList.add('touch-active');
-            });
+            }, { passive: true });
             element.addEventListener('touchend', function() {
                 this.classList.remove('touch-active');
-            });
+            }, { passive: true });
         }
     });
 
@@ -89,6 +80,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Skills animation
+    const skillsSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-line span');
+    const radialBars = document.querySelectorAll('.radial-bar circle');
+
+    function showProgress() {
+        progressBars.forEach(p => {
+            const value = p.dataset.progress;
+            p.style.opacity = 1;
+            p.style.width = `${value}%`;
+        });
+
+        radialBars.forEach(r => {
+            const value = r.parentElement.dataset.percent;
+            const radius = r.getAttribute('r');
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (value / 100) * circumference;
+            r.style.strokeDasharray = `${circumference} ${circumference}`;
+            r.style.strokeDashoffset = offset;
+        });
+    }
 
     function hideProgress() {
         progressBars.forEach(p => {
