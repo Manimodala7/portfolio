@@ -209,19 +209,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Create Gmail compose URL
         const gmailComposeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=manwith3mvr@gmail.com&su=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
+        const mailtoUrl = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
         
-        // Open Gmail compose page in a new tab
-        window.open(gmailComposeUrl, '_blank');
-
-        // Clear the input field
+        const newWindow = window.open(gmailComposeUrl, '_blank');
+        
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            window.location.href = mailtoUrl;
+         }
         emailInput.value = '';
 
-        // Show a confirmation message
         alert('Gmail compose window opened. Please complete your message and send.');
-    });
-
+    }
+    submitBtn.addEventListener('click', handleSubmit);
+    submitBtn.addEventListener('touchend', handleSubmit);
+    
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
