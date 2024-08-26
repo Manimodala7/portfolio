@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = contactForm.querySelector('input[type="text"]');
     const submitBtn = contactForm.querySelector('.btn');
 
-    function handleSubmit(e) {
+    submitBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
         const email = emailInput.value.trim();
