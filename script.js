@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = contactForm.querySelector('input[type="text"]');
     const submitBtn = contactForm.querySelector('.btn');
 
-    submitBtn.addEventListener('click', function(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         
         const email = emailInput.value.trim();
@@ -221,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         alert('Gmail compose window opened. Please complete your message and send.');
     });
+    
     submitBtn.addEventListener('click', handleSubmit);
     submitBtn.addEventListener('touchend', handleSubmit);
     
