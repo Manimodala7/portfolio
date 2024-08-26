@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         emailInput.value = '';
 
         alert('Gmail compose window opened. Please complete your message and send.');
-    }
+    });
     submitBtn.addEventListener('click', handleSubmit);
     submitBtn.addEventListener('touchend', handleSubmit);
     
