@@ -195,38 +195,71 @@ document.addEventListener('DOMContentLoaded', function() {
     }, totalDelay * 1000);
 
 
-    const contactForm = document.querySelector('.contact .input-box');
-    const emailInput = contactForm.querySelector('input[type="text"]');
-    const submitBtn = contactForm.querySelector('.btn');
+    // ... (all your existing code for animations, scrolling, etc.)
 
-    submitBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const email = emailInput.value.trim();
-        
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
+// Email functionality
+const contactForm = document.querySelector('.contact .input-box');
+const emailInput = contactForm.querySelector('input[type="text"]');
+const submitBtn = contactForm.querySelector('.btn');
 
-        const gmailComposeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=manwith3mvr@gmail.com&su=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
-        const mailtoUrl = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
-        
-        const newWindow = window.open(gmailComposeUrl, '_blank');
-        
-        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-            window.location.href = mailtoUrl;
-         }
-        emailInput.value = '';
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-        alert('Gmail compose window opened. Please complete your message and send.');
-    });
+submitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
     
-    submitBtn.addEventListener('click', handleSubmit);
-    submitBtn.addEventListener('touchend', handleSubmit);
+    const email = emailInput.value.trim();
     
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    if (!isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
     }
+
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manwith3mvr@gmail.com&su=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
+    const mailtoUrl = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
+    
+    // Try to open Gmail in the same window
+    window.location.href = gmailComposeUrl;
+
+    // If Gmail URL doesn't work, fall back to mailto after a short delay
+    setTimeout(() => {
+        if (document.hidden) {
+            return; // Gmail opened successfully
+        }
+        window.location.href = mailtoUrl;
+    }, 1000);
+
+    emailInput.value = '';
+    alert('Attempting to open email client. Please complete your message and send.');
+});
+
+submitBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    
+    const email = emailInput.value.trim();
+    
+    if (!isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manwith3mvr@gmail.com&su=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
+    const mailtoUrl = `mailto:manwith3mvr@gmail.com?subject=Contact from Website&body=From: ${encodeURIComponent(email)}%0A%0AMessage: `;
+    
+    // Try to open Gmail in the same window
+    window.location.href = gmailComposeUrl;
+
+    // If Gmail URL doesn't work, fall back to mailto after a short delay
+    setTimeout(() => {
+        if (document.hidden) {
+            return; // Gmail opened successfully
+        }
+        window.location.href = mailtoUrl;
+    }, 1000);
+
+    emailInput.value = '';
+    alert('Attempting to open email client. Please complete your message and send.');
+});
 });
