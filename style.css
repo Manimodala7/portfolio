@@ -41,6 +41,9 @@ header{
     display: flex;
     gap: 2rem;
 }
+a{
+    text-decoration: none;
+}
 li a{
     position: relative;
     display: inline-block;
