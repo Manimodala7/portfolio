@@ -41,7 +41,7 @@ header{
     display: flex;
     gap: 2rem;
 }
-a{
+a i{
     text-decoration: none;
 }
 li a{
