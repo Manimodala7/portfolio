@@ -95,6 +95,7 @@ li a::before{
 .visit-btn a{
     color: black;
     text-decoration: none;
+    text-weight:bold;
 }    
 
 
