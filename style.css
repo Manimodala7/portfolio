@@ -92,7 +92,7 @@ li a::before{
     animation: slideTop 1s ease forwards ;
     animation-delay: 1.38s;
 } 
-.visit-btn a{
+button .visit-btn a{
     color: black;
     text-decoration: none;
 }    
