@@ -197,6 +197,10 @@ section{
     color: transparent;
     font-size: 2rem;
 }
+.info-box span a{
+    text-decoration: none;
+    color: linear-gradient(to right, rgb(255, 0, 255), rgb(0, 157, 255));
+}
 .info-box p{
     opacity: 0;
     animation: slideLeft 1s ease forwards ;
